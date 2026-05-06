@@ -1,9 +1,10 @@
 ---
 name: crea-docs
 description: >
-  Crea la carpeta docs/ con tres archivos markdown para un nuevo proyecto de cliente:
+  Crea la carpeta docs/ con cuatro archivos markdown para un nuevo proyecto de cliente:
   contexto.md (quién es el cliente, el problema, el negocio), progreso.md (historial
-  de sesiones y pendientes), y roadmap.md (próximos pasos por fases).
+  de sesiones y pendientes), roadmap.md (fases a largo plazo) y proximos-pasos.md
+  (tareas concretas e inmediatas en orden de prioridad).
   Usar cuando el usuario diga "crea los docs", "genera la documentación del proyecto",
   "crea-docs" o inicie un nuevo proyecto de cliente.
 ---
@@ -18,13 +19,14 @@ Cuando el usuario diga "crea los docs", "/crea-docs", "genera la documentación"
 
 ## Lo que genera
 
-Crea `docs/` en el directorio del proyecto actual con tres archivos:
+Crea `docs/` en el directorio del proyecto actual con cuatro archivos:
 
 | Archivo | Contenido |
 |---|---|
 | `contexto.md` | Quién es el cliente, su negocio, el problema que resuelve el agente, el flujo deseado, acuerdos económicos |
-| `progreso.md` | Historial de sesiones con fecha y lo que se hizo, tabla de pendientes con responsable y estado |
-| `roadmap.md` | Próximos pasos organizados en fases numeradas, con checkboxes |
+| `progreso.md` | Historial de sesiones con fecha y lo que se hizo, tabla de estado actual y pendientes con responsable |
+| `roadmap.md` | Visión a largo plazo organizada en fases numeradas (incluye mejoras futuras post-lanzamiento) |
+| `proximos-pasos.md` | Tareas concretas e inmediatas en orden de prioridad, con responsable y checklist de testing |
 
 ## Flujo de ejecución
 
@@ -57,7 +59,7 @@ Así `progreso.md` refleja con precisión lo que ya está construido.
 mkdir -p docs
 ```
 
-Luego escribir los tres archivos con el contenido extraído.
+Luego escribir los cuatro archivos con el contenido extraído.
 
 ---
 
@@ -131,15 +133,52 @@ Luego escribir los tres archivos con el contenido extraído.
 - [ ] Mejora 1
 ```
 
+### proximos-pasos.md
+
+Tareas concretas e inmediatas, en orden de prioridad. Cada paso tiene:
+- Número y título claro
+- Responsable (Jonathan / cliente / ambos)
+- Detalle accionable (pasos exactos, comandos, URLs)
+- Checklist de testing cuando aplica
+
+```markdown
+# Próximos Pasos — [Nombre Cliente]
+
+Tareas concretas para dejar el proyecto operativo. En orden.
+
+---
+
+## 1. [Título de la tarea]
+**Responsable: [quién]**
+
+[Descripción y pasos concretos]
+
+---
+
+## 2. [Título de la tarea]
+**Responsable: [quién]**
+
+[Descripción y pasos concretos]
+
+---
+
+## N. Testing end-to-end
+**Responsable: Jonathan + [cliente]**
+
+- [ ] Flujo A — verificar que [resultado esperado]
+- [ ] Flujo B — verificar que [resultado esperado]
+```
+
 ---
 
 ## Cómo actualizar los docs
 
 Cuando el usuario diga **"actualiza los docs"** al final de una sesión:
 
-1. Leer el estado actual de `docs/progreso.md` y `docs/roadmap.md`
+1. Leer el estado actual de los cuatro archivos en `docs/`
 2. Agregar una nueva entrada en `progreso.md` con la fecha de hoy y las tareas completadas
 3. Tachar o mover a completado los ítems del roadmap que se terminaron
-4. Actualizar la tabla de pendientes en `progreso.md`
+4. Actualizar `proximos-pasos.md`: marcar completados, ajustar prioridades, agregar nuevos pasos si surgieron
+5. Actualizar la tabla de estado en `progreso.md`
 
 No crear archivos nuevos — solo editar los existentes con `Edit`.
